@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Compra e Reserva de Jogos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1d1b31;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        header .logo img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f8b5d0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #fff;
+            transition: width 0.3s ease;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .user-actions a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Animação de fundo */
+        .background-animations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(110,69,225,1) 0%, rgba(136,211,206,1) 100%);
+            overflow: hidden;
+        }
+
+        .background-animations .glow {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            filter: blur(15px);
+            animation: glow 15s infinite alternate ease-in-out;
+        }
+
+        .background-animations .glow:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 20%;
+        }
+
+        .background-animations .glow:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            top: 70%;
+            left: 80%;
+        }
+
+        .background-animations .glow:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            top: 40%;
+            left: 50%;
+        }
+
+        @keyframes glow {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+
+        /* Conteúdo Principal */
+        main {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-section h1 {
+            color: #f8b5d0;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .contact-section h1::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 5px;
+            background-color: #fff;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-form {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .contact-form button {
+            padding: 15px 30px;
+            background-color: #f8b5d0;
+            color: #1d1b31;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form button:hover {
+            background-color: #ff77a9;
+            transform: scale(1.05);
+        }
+
+        /* Seção de Jogos */
+        .games-section {
+            padding: 4rem 2rem;
+            background-color: #1d1b31;
+            color: white;
+        }
+
+        .games-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #f8b5d0;
+            margin-bottom: 2rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
+        .game-card button {
+            padding: 10px 20px;
+            background-color: #f8b5d0;
+            color: #1d1b31;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .game-card button:hover {
+            background-color: #ff77a9;
+            transform: scale(1.05);
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: #f8b5d0;
+            text-decoration: none;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="logorover.png" alt="Logo do Site">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="jogos.html">JOGOS</a></li>
+                <li><a href="promocao.html">PROMOÇÕES</a></li>
+                <li><a href="carrinho.html">CARRINHO</a></li>
+                <li><a href="contato.html">CONTATO</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="#login">LOGIN</a>
+            <a href="#signup">REGISTRAR-SE</a>
+        </div>
+    </header>
+
+    <!-- Animações de Fundo -->
+    <div class="background-animations">
+        <div class="glow"></div>
+        <div class="glow"></div>
+        <div class="glow"></div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Seção de Exibição de Jogos -->
+        <section id="games" class="games-section">
+            <h2>DISPONÍVEIS</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <img src="cyberpunk.jpg" alt="Cyber Punk 2077">
+                    <h3>CYBER PUNK 2077</h3>
+                    <p>Cyberpunk 2077 é um RPG de ação e aventura em mundo aberto que se passa em Night City, uma megalópole perigosa onde todos são obcecados por poder, glamour e alterações corporais.</p>
+                    <a href="detailCyber.html"><button>COMPRAR</button></a>
+                    <button>RESERVAR</button>
+                </div>
+                <div class="game-card">
+                    <img src="lis.jpg" alt="Life is Strange jogo 1">
+                    <h3>LIFE IS STRANGE</h3>
+                    <p>Life is Strange é uma premiada aventura em episódios, aclamada pela crítica, que permite ao jogador voltar no tempo e alterar passado, presente e futuro.</p>
+                    <a href="detailLis.html"><button>COMPRAR</button></a>
+                    <button>RESERVAR</button>
+                </div>
+                <div class="game-card">
+                    <img src="rdr2.jpg" alt="Red Dead Redemption 2">
+                    <h3>RED DEAD REDEMPTION 2</h3>
+                    <p>Red Dead Redemption 2, a épica aventura de mundo aberto da Rockstar Games aclamada pela crítica e o jogo mais bem avaliado desta geração de consoles, agora chega aprimorado para PC com conteúdos inéditos no Modo História, melhorias visuais e muito mais.</p>
+                    <a href="detailRdr.html"><button>COMPRAR</button></a>
+                    <button>RESERVAR</button>
+                </div>
+                <div class="game-card">
+                    <img src="witcher3.jpg" alt="The Witcher 3">
+                    <h3>THE WITCHER 3 - WILD HUNT</h3>
+                    <p>Você é Geralt de Rívia, mercenário matador de monstros. Você está em um continente devastado pela guerra e infestado de monstros para você explorar à vontade. Sua tarefa é encontrar Ciri, a Criança da Profecia — uma arma viva que pode alterar a forma do mundo.</p>
+                    <a href="detailWit.html"><button>COMPRAR</button></a>
+                    <button>RESERVAR</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contact" class="contact-section" width="20px">
+            <h1>ENTRE EM CONTATO CONOSCO</h1>
+            <div class="contact-form">
+                <input type="text" placeholder="SEU NOME">
+                <input type="email" placeholder="SEU E-MAIL">
+                <textarea placeholder="Sua Mensagem"></textarea>
+                <button>ENVIAR</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Site de Jogos. Todos os direitos reservados.</p>
+        <a href="index.html">Política de Privacidade</a>
+    </footer>
+
+</body>
+</html>

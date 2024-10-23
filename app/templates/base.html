@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Loja de Jogos - Catálogo</title>
+    <style>
+        /* Estilos Globais */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1d1b31;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        header .logo img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f8b5d0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #fff;
+            transition: width 0.3s ease;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .user-actions a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Animação de fundo */
+        .background-animations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(110,69,225,1) 0%, rgba(136,211,206,1) 100%);
+            overflow: hidden;
+        }
+
+        .background-animations .glow {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            filter: blur(15px);
+            animation: glow 15s infinite alternate ease-in-out;
+        }
+
+        .background-animations .glow:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 20%;
+        }
+
+        .background-animations .glow:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            top: 70%;
+            left: 80%;
+        }
+
+        .background-animations .glow:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            top: 40%;
+            left: 50%;
+        }
+
+        @keyframes glow {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+
+        /* Conteúdo Principal */
+        main {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .destaques h1 {
+            color: #f8b5d0;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .destaques h1::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 5px;
+            background-color: #fff;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+
+        .game-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            width: 300px;
+            margin: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .game-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        .game-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            filter: brightness(1.2);
+        }
+
+        .game-item h2 {
+            font-size: 2rem;
+            color: #f8b5d0;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        .game-item p {
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.7rem;
+            color: #88d3ce;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background-color: #f8b5d0;
+            color: #1d1b31;
+            text-transform: uppercase;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: #ff77a9;
+            transform: scale(1.05);
+        }
+
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: #f8b5d0;
+            text-decoration: none;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animações de fundo -->
+    <div class="background-animations">
+        <div class="glow"></div>
+        <div class="glow"></div>
+        <div class="glow"></div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="logorover.png" alt="Logo da Loja de Jogos">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="jogos.html">Jogos</a></li>
+                <li><a href="promocao.html">Promoções</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="login.html">Login</a> | <a href="registro.html">Registrar</a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <section class="destaques">
+            <h1>Catálogo de Jogos</h1>
+            <div id="games-list" class="games-list">
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Loja de Jogos. Todos os direitos reservados.</p>
+        <p><a href="index.html">Política de Privacidade</a> | <a href="index.html">Termos de Serviço</a></p>
+    </footer>
+
+    <script>
+        // Array de objetos com informações dos jogos
+        const jogos = [
+            {
+                nome: "Cyberpunk 2077",
+                preco: "R$ 199,99",
+                imagem: "cyberpunk.jpg",
+                descricao: "Um RPG de mundo aberto ambientado no futuro distópico.",
+                link: "#"
+            },
+            {
+                nome: "The Witcher 3",
+                preco: "R$ 99,99",
+                imagem: "witcher3.jpg",
+                descricao: "Aventura épica em um mundo de fantasia.",
+                link: "#"
+            },
+            {
+                nome: "Red Dead Redemption 2",
+                preco: "R$ 249,99",
+                imagem: "rdr2.jpg",
+                descricao: "Uma aventura épica no Velho Oeste com um enredo envolvente.",
+                link: "#"
+            },
+            {
+                nome: "Life Is Strange ",
+                preco: "R$ 49,99",
+                imagem: "lis.jpg",
+                descricao: "Uma aventura épica com uma garota que volta no tempo.",
+                link: "#"
+            }
+        ];
+
+        // Função para carregar os jogos na página
+        function carregarJogos() {
+            const listaDeJogos = document.getElementById('games-list');
+
+            jogos.forEach(jogo => {
+                // Criando o contêiner do jogo
+                const jogoContainer = document.createElement('div');
+                jogoContainer.classList.add('game-item');
+
+                // Criando o elemento de imagem
+                const img = document.createElement('img');
+                img.src = jogo.imagem;
+                img.alt = jogo.nome;
+
+                // Criando o título do jogo
+                const titulo = document.createElement('h2');
+                titulo.textContent = jogo.nome;
+
+                // Criando a descrição do jogo
+                const descricao = document.createElement('p');
+                descricao.textContent = jogo.descricao;
+
+                // Criando o preço do jogo
+                const preco = document.createElement('p');
+                preco.classList.add('price');
+                preco.textContent = jogo.preco;
+
+                // Criando o botão de compra
+                const botaoCompra = document.createElement('a');
+                botaoCompra.href = jogo.link;
+                botaoCompra.classList.add('buy-btn');
+                botaoCompra.textContent = "Comprar";
+
+                // Adicionando os elementos ao contêiner do jogo
+                jogoContainer.appendChild(img);
+                jogoContainer.appendChild(titulo);
+                jogoContainer.appendChild(descricao);
+                jogoContainer.appendChild(preco);
+                jogoContainer.appendChild(botaoCompra);
+
+                // Adicionando o jogo ao contêiner da lista de jogos
+                listaDeJogos.appendChild(jogoContainer);
+            });
+        }
+
+        // Carregar os jogos ao carregar a página
+        window.onload = carregarJogos;
+    </script>
+</body>
+</html>

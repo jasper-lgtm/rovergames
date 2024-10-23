@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises de Jogos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1d1b31;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        header .logo img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f8b5d0;
+        }
+
+        .promo-container {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .promo-title {
+            color: #f8b5d0;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .promo-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .promo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .promo-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .promo-item h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .promo-item p {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .promo-price {
+            font-size: 1.3rem;
+        }
+
+        .promo-price del {
+            color: #ff4d4d;
+            margin-right: 0.5rem;
+        }
+
+        .promo-price span {
+            color: #4dff4d;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, #6e45e1, #88d3ce);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="jogos.html">JOGOS</a></li>
+                <li><a href="promocao.html">PROMOÇÕES</a></li>
+                <li><a href="carrinho.html">CARRINHO</a></li>
+                <li><a href="contato.html">CONTATO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="promo-container">
+        <h1 class="promo-title">Promoções Especiais de Jogos</h1>
+        <div class="promo-grid">
+            <!-- Jogo 1 -->
+            <div class="promo-item">
+                <img src="cyberpunk.jpg" alt="Jogo 1">
+                <h3>CYBER PUNK 2077</h3>
+                <p>RPG / Ação</p>
+                <p class="promo-price"><del>R$399,90</del> <span>R$199,90</span></p>
+            </div>
+
+            <!-- Jogo 2 -->
+            <div class="promo-item">
+                <img src="lis.jpg" alt="Jogo 2">
+                <h3>LIFE IS STRANGE</h3>
+                <p>Aventura / Estratégia</p>
+                <p class="promo-price"><del>R$149,90</del> <span>R$49,90</span></p>
+            </div>
+
+            <!-- Jogo 3 -->
+            <div class="promo-item">
+                <img src="rdr2.jpg" alt="Jogo 3">
+                <h3>RED DEAD REDEMPTION 2</h3>
+                <p>Aventura / Ação</p>
+                <p class="promo-price"><del>R$499,90</del> <span>R$149,90</span></p>
+            </div>
+
+            <!-- Jogo 4 -->
+            <div class="promo-item">
+                <img src="witcher3.jpg" alt="Jogo 4">
+                <h3>THE WITCHER - WILD HUNT </h3>
+                <p>Esportes</p>
+                <p class="promo-price"><del>R$629,90</del> <span>R$186,27</span></p>
+            </div>
+
+    <footer>
+        <p>&copy; 2024 Loja de Jogos. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
